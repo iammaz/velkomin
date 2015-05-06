@@ -1,0 +1,10 @@
+.menu
+  ul.nav.nav-pills
+    li(class=(menu === 'index')?'active':'')
+      a(href='/') Heim
+    if (admin || menu ==='admin' || menu==='post')
+      li
+        a(href="/logout") Log out
+    else
+      li(class=(menu === 'login')?'active':'')
+        a(href='/users/login') Innskráning
