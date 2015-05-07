@@ -29,3 +29,28 @@ td.action {
 .alert {
   margin-top: 20px;
 }
+
+.toppur{
+  text-align: center;
+  font-size: 21px;
+}
+
+.intro-area{
+  height: 400px;
+  position: relative;
+  display: block;
+  padding: 0 12.5px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  /*color: #fff;
+  /*background-image: '/images/kirkjufell.jpg';
+  */
+}
+
+.uppercase{
+  text-transform: uppercase;
+}

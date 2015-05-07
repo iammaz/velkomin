@@ -2,5 +2,12 @@ extends layout
 block page
   - var menu = 'index'
 block content
-  h1= title
-  p Velkomin í #{title}
+  div.intro-area
+    div.uppercase Svo mikið að gera
+    p svo lítill tími
+    form( action='/search', type='POST')
+      input.form-control(name='search', type='text', placeholder='Hvað langar þig að gera í dag?')
+
+
+    img(src='/images/SilfraRiftIceland.jpg')
+  
