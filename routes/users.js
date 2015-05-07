@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/velkomin')
-var Schema = mongoose.Schema;
+//var mongoose = require('mongoose');
+//mongoose.connect('mongodb://localhost/velkomin')
+/*var Schema = mongoose.Schema;
 
 var userSchema = Schema({
   name: String,
@@ -14,6 +14,8 @@ var userSchema = Schema({
 });
 
 var User = mongoose.model('User', userSchema);
+*/
+
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -33,7 +35,16 @@ router.post('/login', function (req, res) {
     });
   }
 
-  var user = User.findOne({email: email}, function (err, data) {
+var findOne = function (msg, callback) {
+  if( msg.email === 'magnusbl@hotmail.com' || msg.email === 'lisa@velkomin.is'){
+    console.log('ok')
+    return callback(null, {email: email, password:'qwe'});
+  }
+  return callback(null, null);
+}
+
+  //var user = User.findOne({email: email}, function (err, data) {
+  var user = findOne({email: email}, function (err, data) {
     if( err) {
       res.render('login', {
         error: 'Sláðu inn netfang og lykilorð til að skrá þig inn.'
@@ -46,8 +57,8 @@ router.post('/login', function (req, res) {
     } else {
       console.log(Date.now());
       console.log(Date.now);
-      data.last_login = Date.now();
-      data.save();
+      //data.last_login = Date.now();
+      //data.save();
     }
     res.redirect('/');
 
