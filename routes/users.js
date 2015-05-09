@@ -1,9 +1,13 @@
 var express = require('express'),
     router = express.Router(),
     mongoose = require('mongoose'),
-    User = require('../model/user-model')
+    User = require('../model/user-model'),
+    insert = require('../model/insert');
 
-mongoose.connect('mongodb://localhost/velkomin', function (err) {
+var localConn = 'mongodb://localhost/velkomin';
+var remoteConn = 'mongodb://heroku_mongo:heroku_mongo_pass@ds037087.mongolab.com:37087/heroku_app36601981';
+
+mongoose.connect(remoteConn, function (err) {
   if( err){
     console.log('Villa við tengingu við Mongo');
     console.error(err);
@@ -16,6 +20,14 @@ mongoose.connect('mongodb://localhost/velkomin', function (err) {
 router.get('/', function(req, res) {
   res.send('respond with a resource');
 });
+
+router.get('/insert', function (req, res) {
+  console.log('users/insert')
+  console.log(insert);
+  insert();
+  //insert.buaTilNotendur();
+  res.redirect('/');
+})
 
 /* GET login page */
 router.get('/login',function (req, res) {

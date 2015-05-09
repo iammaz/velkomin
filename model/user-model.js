@@ -1,5 +1,4 @@
 var express = require('express'),
-    router = express.Router(),
     mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
     SALT_WORK_FATOR = 10,
@@ -42,48 +41,3 @@ UserSchema.methods.comparePassword = function(candidatePassword, callback) {
 }
 
 module.exports = mongoose.model('User', UserSchema);
-
-var buaTilNotendur = function () {
-  var maggi = new User({
-    name: 'Magnús Blöndal',
-    email: 'magnusbl@hotmail.com',
-    password: 'qwe',
-    admin: true,
-    confirmed_email: true
-  });
-
-  maggi.save(function (err) {
-    if( err){
-      console.log(err);
-      throw err;
-    }
-  });
-
-  var lisa = new User({
-    name: 'Lísa Kristín',
-    email: 'lisa@velkomin.com',
-    password: 'qwe',
-    admin: true,
-    confirmed_email: true
-  });
-
-  lisa.save(function (err) {
-    if( err){
-      console.log(err);
-      throw err;
-    }
-  });
-
-  var duddi = new User({
-    name: 'Dúddi Jóns',
-    email: 'duddi@jons.com',
-    password: 'qwe',
-  });
-
-  duddi.save(function (err) {
-    if( err){
-      console.log(err);
-      throw err;
-    }
-  });
-}
