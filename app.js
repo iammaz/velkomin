@@ -2,8 +2,10 @@ var express = require('express'),
     path = require('path'),
     favicon = require('static-favicon'),
     logger = require('morgan'),
-    cookieParser = require('cookie-parser'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser')
+    session = require('express-session')
+    parseurl = require('parseurl')
+    velk_session = require('./middleware/session');
 
 // routes
 var routes = require('./routes/index'),
@@ -19,8 +21,15 @@ app.use(favicon())
    .use(logger('dev'))
    .use(bodyParser.json())
    .use(bodyParser.urlencoded())
-   .use(cookieParser())
    .use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: '19a86882-4796-4185-a8a6-b86998497f29',
+  resave: false,
+  saveUninitialized: true
+}))
+  .use(velk_session);
+
 
 app.use('/', routes);
 app.use('/users', users);

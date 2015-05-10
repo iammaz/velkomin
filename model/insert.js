@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     User = require('../model/user-model')
 
-console.log('insert')
 var buaTilNotendur = function () {
   console.log('insert/buaTilNotendur')
 

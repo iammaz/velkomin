@@ -25,7 +25,6 @@ router.get('/insert', function (req, res) {
   console.log('users/insert')
   console.log(insert);
   insert();
-  //insert.buaTilNotendur();
   res.redirect('/');
 })
 
@@ -39,7 +38,7 @@ router.post('/login', function (req, res) {
   var email = req.body.email,
       pass  = req.body.password;
 
-  // er annaðhvor gildin tóm?
+  // eru annaðhvor gildin tóm?
   if(!email || !pass){
     res.render('login', {
       error: 'Sláðu inn netfang og lykilorð til að skrá þig inn.'
@@ -54,7 +53,6 @@ router.post('/login', function (req, res) {
         error: 'Notandi fannst ekki.'
       });
     } else {
-      console.log(data)
       data.comparePassword(pass, function (err, isMatch) {
         if(err) throw err;
         if(isMatch === false){
@@ -62,6 +60,7 @@ router.post('/login', function (req, res) {
             error: 'Netfang og lykilorð passa ekki saman.'
           });
         } else {
+          req.session.user = {name: data.name, admin: data.admin};
           data.last_login = Date.now();
           data.save();
           res.redirect('/');
@@ -72,16 +71,12 @@ router.post('/login', function (req, res) {
 });
 
 router.get('/logout',function (req, res) {
+  if( req.session && req.session.user){
+    console.log('setjum session sem null')
+    req.session.user = null;
+  }
+  res.locals.loggedin = false;
   res.redirect('/');
 });
 
 module.exports = router;
-/*
-var findOne = function (msg, callback) {
-  if( msg.email === 'magnusbl@hotmail.com' || msg.email === 'lisa@velkomin.is'){
-    console.log('ok')
-    return callback(null, {email: email, password:'qwe'});
-  }
-  return callback(null, null);
-}
-*/
