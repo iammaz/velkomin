@@ -7,6 +7,8 @@
       li
         a(href="/users/logout") Útskrá
     else
+      li(class=(menu === 'register')?'active':'')
+        a(href='/users/register') Nýskráning
       li(class=(menu === 'login')?'active':'')
         a(href='/users/login') Innskráning
 

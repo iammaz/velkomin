@@ -6,14 +6,15 @@ var express = require('express'),
 
 var localConn = 'mongodb://localhost/velkomin';
 var remoteConn = 'mongodb://heroku_mongo:heroku_mongo_pass@ds037087.mongolab.com:37087/heroku_app36601981';
+var conn = localConn;
 
-mongoose.connect(remoteConn, function (err) {
+mongoose.connect(conn, function (err) {
   if( err){
     console.log('Villa við tengingu við Mongo');
     console.error(err);
     throw err;
   }
-  console.log('Tenging við Mongo komin á.')
+  console.log('Tenging við Mongo komin á. ' + conn)
 });
 
 /* GET users listing. */
@@ -22,10 +23,51 @@ router.get('/', function(req, res) {
 });
 
 router.get('/insert', function (req, res) {
-  console.log('users/insert')
-  console.log(insert);
   insert();
   res.redirect('/');
+});
+
+/* register new user */
+router.get('/register', function (req, res) {
+  res.render('register');
+})
+
+router.post('/register', function(req, res) {
+  var name = req.body.name;
+  var email = req.body.email;
+  var pass = req.body.password;
+  var pass2 = req.body.password_confirm;
+  var error = (!email)
+    ? 'Þarft að skrá netfang'
+    : ! pass
+      ? 'Vantar lykilorð'
+      : pass !== pass2
+        ? 'Lykilorð ekki eins'
+        : null;
+
+  if(error) {
+    res.render('register', {
+      error: error,
+      name: name,
+      email: email
+    });
+  } else {
+    req.session.user = {name: name, admin: false};
+    var user = new User({
+      name: name,
+      email: email,
+      password: pass,
+      admin: false,
+      confirmed_email: false
+    });
+    user.save(function (err) {
+      if( err){
+        console.log(err);
+        throw err;
+      }
+    });
+    res.redirect('/')
+  }
 })
 
 /* GET login page */
