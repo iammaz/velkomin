@@ -6963,9 +6963,6 @@ button.close {
     color: #fafafa;
     background-color: #000; }
 
-.trash {
-  color: #d15b47; }
-
 .thing-form {
   margin: 20px 0; }
 
@@ -6991,28 +6988,5 @@ button.close {
   padding: 30px 0;
   margin-top: 70px;
   border-top: 1px solid #E5E5E5; }
-
-.modal-primary .modal-header,
-.modal-info .modal-header,
-.modal-success .modal-header,
-.modal-warning .modal-header,
-.modal-danger .modal-header {
-  color: #fff;
-  border-radius: 5px 5px 0 0; }
-
-.modal-primary .modal-header {
-  background: #428bca; }
-
-.modal-info .modal-header {
-  background: #5bc0de; }
-
-.modal-success .modal-header {
-  background: #5cb85c; }
-
-.modal-warning .modal-header {
-  background: #f0ad4e; }
-
-.modal-danger .modal-header {
-  background: #d9534f; }
 
 /*# sourceMappingURL=app.css.map */

@@ -1,0 +1,1 @@
+"use strict";console.log("in app.js"),angular.module("VelkominApp",["ngCookies","ngResource","ngSanitize","ui.router","ui.bootstrap"]);

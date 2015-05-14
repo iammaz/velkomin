@@ -1,0 +1,21 @@
+.menu
+  ul.nav.nav-pills
+    li(class=(menu === 'index')?'active':'')
+      a(href='/') Heim
+
+    if(loggedin)
+      li
+        a(href="/users/logout") Útskrá
+    else
+      li(class=(menu === 'register')?'active':'')
+        a(href='/users/register') Nýskráning
+      li(class=(menu === 'login')?'active':'')
+        a(href='/users/login') Innskráning
+
+  //
+    if (admin || menu ==='admin' || menu==='post')
+      li
+        a(href="/logout") Log out
+    else
+      li(class=(menu === 'login')?'active':'')
+        a(href='/users/login') Innskráning

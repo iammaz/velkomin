@@ -5,8 +5,8 @@
 'use strict'
 var express= require('express');
 var path = require('path'),
-    favicon = require('static-favicon'),
-    //var favicon = require('serve-favicon'),
+    //favicon = require('static-favicon'),
+    favicon = require('serve-favicon'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
@@ -19,22 +19,20 @@ var path = require('path'),
     mongoose = require('mongoose');
 var config = require('./environment');
 //var passport = require('passport');
-//var mongoStore = require('connect-mongo')(session);
+var mongoStore = require('connect-mongo')(session);
 
 
 module.exports = function (app) {
   var env = app.get('env');
 
   app.set('views', config.root + '/server/views');
-  app.set('view engine', 'jade');
-  //app.engine('html', require('ejs').renderFile);
-  //app.set('view engine', 'html');
+  app.engine('html', require('ejs').renderFile);
+  app.set('view engine', 'html');
   app.use(compression());
   app.use(methodOverride());
   app.use(cookieParser());
   //app.use(passport.initialize());
 
-  app.use(favicon());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(express.static(path.join(config.root, '/server/public')));
@@ -43,14 +41,13 @@ module.exports = function (app) {
     secret: config.secrets.session,
     resave: true,
     saveUninitialized: true,
-    //store: new mongoStore({ mongoose_connection: mongoose.connection })
+    store: new mongoStore({ mongoose_connection: mongoose.connection })
   }))
     .use(velk_session);
 
-
   if ('production' === env) {
-//      app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
-//      app.use(express.static(path.join(config.root, 'public')));
+      app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
+      app.use(express.static(path.join(config.root, 'public')));
       app.set('appPath', config.root + '/public');
       app.use(morgan('dev'));
     }

@@ -18,28 +18,36 @@ mongoose.connect(config.mongo.uri, config.mongo.options , function (err) {
   console.log('Tenging við Mongo komin á. ' + conn)
 });
 
+// Populate DB with sample data
+//if(config.seedDB) { require('./config/seed'); }
+
 // routes
-var routes = require('./routes/index'),
-    users = require('./routes/users');
+//var routes = require('./routes/index'),
+//    users = require('./routes/users');
 
 var app = express();
-// TODO: breyta
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+var server = require('http').createServer(app);
+
+
 require('./config/express')(app);
+require('./routes')(app);
 
-app.use('/', routes);
-app.use('/users', users);
-
+server.listen(config.port, config.ip, function () {
+  console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+});
+//app.use('/', routes);
+//app.use('/users', users);
+/*
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
+*/
 
 /// error handlers
-
+/*
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -61,6 +69,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+*/
 
-
-module.exports = app;
+exports = module.exports = app;

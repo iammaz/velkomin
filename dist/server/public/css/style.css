@@ -1,0 +1,61 @@
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+footer {
+  height: 60px;
+}
+html,
+body {
+  height: 100%;
+}
+.content {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.glyphicon-remove,
+.glyphicon-pause,
+.glyphicon-play {
+  cursor: pointer;
+}
+tr.unpublished {
+  color: #cec1c2;
+}
+td.action {
+  width: 20px;
+}
+.alert {
+  margin-top: 20px;
+}
+
+.toppur{
+  text-align: center;
+  font-size: 21px;
+}
+
+.intro-area{
+  height: 400px;
+  position: relative;
+  display: block;
+  padding: 0 12.5px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  font-family: Circular, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  /*color: #fff;
+  /*background-image: '/images/kirkjufell.jpg';
+  */
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+
+.error{
+  color: Red;
+  font-weight: bold;
+}
