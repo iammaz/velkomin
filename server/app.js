@@ -1,35 +1,32 @@
+'use strict'
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
 var express = require('express'),
-    path = require('path'),
-    favicon = require('static-favicon'),
-    logger = require('morgan'),
-    bodyParser = require('body-parser')
-    session = require('express-session')
-    parseurl = require('parseurl')
-    velk_session = require('./middleware/session');
+    mongoose = require('mongoose'),
+    config = require('./config/environment');
+
+var path = require('path');
+
+var conn = "mongodb://localhost/velkomin";
+mongoose.connect(config.mongo.uri, config.mongo.options , function (err) {
+  if( err){
+    console.log('Villa við tengingu við Mongo');
+    console.error(err);
+    throw err;
+  }
+  console.log('Tenging við Mongo komin á. ' + conn)
+});
 
 // routes
 var routes = require('./routes/index'),
     users = require('./routes/users');
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(favicon())
-   .use(logger('dev'))
-   .use(bodyParser.json())
-   .use(bodyParser.urlencoded())
-   .use(express.static(path.join(__dirname, 'public')));
-
-app.use(session({
-  secret: '19a86882-4796-4185-a8a6-b86998497f29',
-  resave: false,
-  saveUninitialized: true
-}))
-  .use(velk_session);
-
+// TODO: breyta
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
+require('./config/express')(app);
 
 app.use('/', routes);
 app.use('/users', users);

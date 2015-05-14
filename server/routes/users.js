@@ -6,8 +6,11 @@ var express = require('express'),
 
 var localConn = 'mongodb://localhost/velkomin';
 var remoteConn = 'mongodb://heroku_mongo:heroku_mongo_pass@ds037087.mongolab.com:37087/heroku_app36601981';
-var conn = localConn;
+var conn =
+  //localConn;
+  remoteConn;
 
+/*
 mongoose.connect(conn, function (err) {
   if( err){
     console.log('Villa við tengingu við Mongo');
@@ -16,6 +19,7 @@ mongoose.connect(conn, function (err) {
   }
   console.log('Tenging við Mongo komin á. ' + conn)
 });
+*/
 
 /* GET users listing. */
 router.get('/', function(req, res) {
