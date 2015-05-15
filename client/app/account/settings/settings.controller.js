@@ -20,4 +20,3 @@ angular.module('VelkominApp')
 		};
     */
   });
-*/

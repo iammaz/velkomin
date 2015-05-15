@@ -5,7 +5,6 @@
 'use strict'
 var express= require('express');
 var path = require('path'),
-    //favicon = require('static-favicon'),
     favicon = require('serve-favicon'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
@@ -16,10 +15,10 @@ var path = require('path'),
     methodOverride = require('method-override'),
     cookieParser = require('cookie-parser'),
     errorHandler = require('errorhandler'),
-    mongoose = require('mongoose');
-var config = require('./environment');
-//var passport = require('passport');
-var mongoStore = require('connect-mongo')(session);
+    mongoose = require('mongoose'),
+    config = require('./environment'),
+    passport = require('passport'),
+    mongoStore = require('connect-mongo')(session);
 
 
 module.exports = function (app) {
@@ -31,7 +30,7 @@ module.exports = function (app) {
   app.use(compression());
   app.use(methodOverride());
   app.use(cookieParser());
-  //app.use(passport.initialize());
+  app.use(passport.initialize());
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));

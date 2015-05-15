@@ -23,11 +23,14 @@
     "mongoose": "~4.0.2",
     "morgan": "~1.0.0",
     "parseurl": "^1.3.0",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.3",
     "serve-favicon": "^2.2.0",
     "static-favicon": "~1.0.0"
   },
   "devDependencies": {
-    "connect-livereload": "^0.5.3",
+    "connect-livereload": "~0.4.0",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-asset-injector": "^0.1.0",
@@ -41,7 +44,6 @@
     "jshint-stylish": "^1.0.2",
     "open": "0.0.5",
     "time-grunt": "^1.2.0",
-
     "grunt-autoprefixer": "~0.7.2",
     "grunt-wiredep": "~1.8.0",
     "grunt-concurrent": "~0.5.0",
@@ -65,7 +67,6 @@
     "grunt-build-control": "DaftMonk/grunt-build-control",
     "grunt-mocha-test": "~0.10.2",
     "grunt-open": "~0.2.3",
-    "connect-livereload": "~0.4.0",
     "karma-ng-scenario": "~0.1.0",
     "karma-firefox-launcher": "~0.1.3",
     "karma-script-launcher": "~0.1.0",
