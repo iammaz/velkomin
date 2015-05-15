@@ -2,7 +2,12 @@
 
 angular.module('VelkominApp')
   .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+    $scope.happenings = [];
+
+    $http.get('/api/happenings').success(function(data){
+      console.log('happenings: ', data)
+      $scope.happenings = data;
+    });
 
 /*
     $http.get('/api/things').success(function(awesomeThings) {
